@@ -1,0 +1,8 @@
+### Vagrant Directory ###
+.vagrant/
+
+### Temp Dirctory ###
+.tmp/
+
+### Chef Cookbooks ###
+.cookbooks/
