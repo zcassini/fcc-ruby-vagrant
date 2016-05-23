@@ -9,9 +9,11 @@ Vagrant.configure("2") do |config|
   config.ssh.forward_agent = true
 
   # Configue the virtual machine to use 2GB of RAM
-  # config.vm.provider :virtualbox do |vb|
+   config.vm.provider :virtualbox do |vb|
   #   vb.customize ["modifyvm", :id, "--memory", "2048"]
-  # end
+    vb.cpus = 4
+    vb.memory = 4096
+   end
 
   config.vm.network :forwarded_port, guest: 3000, host: 3030
 
@@ -42,16 +44,16 @@ Vagrant.configure("2") do |config|
     chef.json = {
       rbenv: {
         user_installs: [{
-          user: 'vagrant',
-          rubies: ["2.2.2"],
-          global: "2.2.2",
-          gems: {
-            "2.2.2" => [
-              { name: "bundler" },
-              { name: "rails"},
-              { name: "rspec"},
-            ]
-          }
+          user:    'vagrant',
+          rubies:  ["2.3.1"],
+          global:  "2.3.1",
+          gems:    {
+                     "2.3.1" => [
+                       { name: "bundler", version: "~>1.12.4" },
+                       { name: "rspec",   version: "~>3.4.4"  },
+                       { name: "rails",   version: "~>4.2.6"  },
+                     ]
+		   }
         }]
       },
       :postgresql => {
