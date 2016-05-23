@@ -8,12 +8,11 @@ Vagrant.configure("2") do |config|
   config.vm.box = "minimal/trusty64"
   config.ssh.forward_agent = true
 
-  # Configue the virtual machine to use 2GB of RAM
-   config.vm.provider :virtualbox do |vb|
-  #   vb.customize ["modifyvm", :id, "--memory", "2048"]
-    vb.cpus = 4
-    vb.memory = 4096
-   end
+  # Configue the virtual machines resources if you want
+   #config.vm.provider :virtualbox do |vb|
+   #  vb.cpus = 4 # 4 cpus
+   #  vb.memory = 4096 # 4 gigs of memory
+   #end
 
   config.vm.network :forwarded_port, guest: 3000, host: 3030
 
