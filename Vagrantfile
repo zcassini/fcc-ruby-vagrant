@@ -38,15 +38,15 @@ Vagrant.configure("2") do |config|
     chef.add_recipe 'nodejs'
     chef.add_recipe 'heroku-toolbelt'
 
-    # Install Ruby 2.2.1 and Bundler
+    # Install Ruby 2.2.2 and Bundler
     chef.json = {
       rbenv: {
         user_installs: [{
           user: 'vagrant',
-          rubies: ["2.2.1"],
-          global: "2.2.1",
+          rubies: ["2.2.2"],
+          global: "2.2.2",
           gems: {
-            "2.2.1" => [
+            "2.2.2" => [
               { name: "bundler" },
               { name: "rails"},
               { name: "rspec"},
