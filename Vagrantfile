@@ -9,12 +9,12 @@ Vagrant.configure("2") do |config|
   config.ssh.forward_agent = true
 
   # Configue the virtual machines resources if you want
-   #config.vm.provider :virtualbox do |vb|
-   #  vb.cpus = 4 # 4 cpus
-   #  vb.memory = 4096 # 4 gigs of memory
-   #end
+  config.vm.provider :virtualbox do |vb|
+  # vb.cpus = 4 # 4 cpus
+    vb.memory = 768 # minimum memory requirement
+  end
 
-  config.vm.network :forwarded_port, guest: 3000, host: 3030
+  config.vm.network :forwarded_port, guest: 3000, host: 3000
 
   # Add the tty fix as mentioned in issue 1673 on vagrant repo
   # To avoid 'stdin is not a tty' messages
@@ -31,15 +31,14 @@ Vagrant.configure("2") do |config|
     chef.cookbooks_path = ["cookbooks"]
 
     chef.add_recipe "apt"
-    chef.add_recipe "build-essential::default"
+    #chef.add_recipe "build-essential::default"
+    chef.add_recipe 'nodejs'
     chef.add_recipe "ruby_build"
     chef.add_recipe "ruby_rbenv::user"
     chef.add_recipe 'postgresql::server'
-    chef.add_recipe 'git'
-    chef.add_recipe 'nodejs'
     chef.add_recipe 'heroku-toolbelt'
 
-    # Install Ruby 2.2.2 and Bundler
+    # Install Ruby 2.3.1 and Gems
     chef.json = {
       rbenv: {
         user_installs: [{
@@ -87,9 +86,6 @@ Vagrant.configure("2") do |config|
           :postgres => "password"
         }
       },
-      :git        => {
-        :prefix => "/usr/local"
-      }
     }
   end
 end
