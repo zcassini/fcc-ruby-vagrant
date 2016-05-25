@@ -1,5 +1,5 @@
 [submodule "nodejs"]
-	path = nodejs
+	path = cookbooks/nodejs
 	url = git@github.com:redguide/nodejs
 [submodule "ruby_rbenv"]
 	path = cookbooks/ruby_rbenv/1
